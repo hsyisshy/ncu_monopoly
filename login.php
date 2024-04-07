@@ -11,12 +11,11 @@
       font-size: 50px;
     }
   
-    body{
-      /*background-color: rgba(255, 255, 255, 0.2);*//*遮罩*/
-      /*background-blend-mode: multiply;*/
-      background-image: url("img/背景.png");
-      background-repeat: no-repeat;
-      background-size: cover;
+    body {
+          background-blend-mode: multiply;
+          background-image: url("img/0_cover.png");
+          background-repeat: no-repeat;
+          background-size: cover;
     }
 </style>
 
