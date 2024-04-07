@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="utf-8" />
+<title>！央央大富翁！</title>
+
+<!-- CSS樣式在這 -->
+<style>
+  body {
+  background-blend-mode: multiply;
+  background-image: url("img/0_cover.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+th {
+  background-color: rgba(255, 255, 255, 0.6);
+  font-size: 32px;
+  color: rgb(4, 51, 22);
+  padding: 20px;
+}
+td {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px;
+  border: 2px solid black;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+}
+
+.red-dot {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%; /* 讓他是個圓 */
+  margin: auto;
+  position: absolute; /* 絕對定位 */
+  display: none; /* 剛進來看不到，按了後才有 */
+}
+
+.index-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 20px;
+  color: burlywood;
+}
+
+</style><!-- end of style -->
+</head><!-- end of head -->
+
+<body>
+  <table id="gameBoard" border="3" >
+      
+    <tr>    
+      <td onclick="moveRedDot(this)"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="20%" height="50%"></td>
+    </tr>
+
+    <tr>
+      <td onclick="moveRedDot(this)"><div class="index-number">16</div>觀景台<br><img src="img/16_壘球場.png" width="20%" height="50%"></td>
+      <th colspan="3" rowspan="3">\央央大富翁/<br>
+        <button id="rollButton" onclick="rollDice()">擲骰子</button>
+        <p id="diceResult">擲骰子結果：00</p><!-- 初始畫面顯示擲骰子結果00 -->
+        <p id="rollTimes">剩餘擲骰子次數：10</p> <!-- 初始畫面即顯示剩餘十次 -->
+        <p id="">個人分數：100</p> <!-- 初始畫面即顯示個人分數100 -->
+      </th>
+      <td onclick="moveRedDot(this)"><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png" width="20%" height="50%"></td>
+    </tr>
+
+    <tr>
+      <td onclick="moveRedDot(this)"><div class="index-number">15</div>太極銅雕<br><img src="img/15_太極銅雕.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">7</div>依仁堂<br><img src="img/7_依仁堂.png" width="20%" height="50%"></td>
+    </tr>
+
+    <tr>
+      <td onclick="moveRedDot(this)"><div class="index-number">14</div>校史館<br><img src="img/14_校史館.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">8</div>oloo<br><img src="img/8_oloo.png" width="20%" height="50%"></td>
+    </tr>
+
+    <tr>
+      <td onclick="moveRedDot(this)"><div class="index-number">13</div>游藝館(機會)<br><img src="img/13_游藝館.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">12</div>百花川<br><img src="img/12_百花川.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">11</div>宵夜街<br><img src="img/11_宵夜街.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">10</div>女生宿舍<br><img src="img/10_女生宿舍.png" width="20%" height="50%"></td>
+      <td onclick="moveRedDot(this)"><div class="index-number">9</div>松苑餐廳<br><img src="img/9_松苑餐廳.png" width="20%" height="50%"></td>
+    </tr>
+
+  </table>
+
+<div class="red-dot" id="redDot"></div>
+</body><!-- end of body -->
+
+ <script>
+  var rollTimes = 10; // 有十次擲骰子的機會
+
+  function rollDice() {
+    if (rollTimes <= 0) {
+      document.getElementById("rollButton").disabled = true; //關掉按鈕
+      return;
+    }
+
+    // 如果剩餘次數大於０，則做請求
+    var Request = new XMLHttpRequest();
+    Request.onreadystatechange = function() {
+
+      if (Request.readyState == 4 && Request.status == 200) {
+
+        document.getElementById("diceResult").innerText = "擲骰子結果：" + Request.responseText;
+
+        // 剩餘次數減一後再更新
+        rollTimes--;
+        document.getElementById("rollTimes").innerText = "剩餘擲骰子次數：" + rollTimes;
+
+      }
+    };
+    Request.open("POST", "roll_dice.php", true);
+    Request.send();
+  }
+
+  function moveRedDot(cell) {
+    var redDot = document.getElementById("redDot");
+    var cellInfo = cell.getBoundingClientRect(); // 知道在哪
+
+    redDot.style.left = cellInfo.left + cell.offsetWidth / 2 + "px";
+    redDot.style.top = cellInfo.top + cell.offsetHeight / 2 + "px"; // 紅點至中
+    redDot.style.display = "block";
+  }
+        
+</script><!-- end of script -->
+
+</html><!-- end of html -->

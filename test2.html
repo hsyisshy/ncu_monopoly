@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            width: 150px;
+            height: 50px;
+        }
+
+        .red-dot {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            margin: auto;
+            position: absolute;
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <table>
+        <tr>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+        </tr>
+        <tr>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+        </tr>
+        <tr>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+          <td onclick="moveRedDot(this)"></td>
+        </tr>
+    </table>
+
+    <div class="red-dot" id="redDot"></div>
+
+    <script>
+        function moveRedDot(cell) {
+            var redDot = document.getElementById("redDot");
+            var cellRect = cell.getBoundingClientRect();
+            redDot.style.left = cellRect.left + cell.offsetWidth / 2 - redDot.offsetWidth / 2 + "px"; 
+            redDot.style.top = cellRect.top + cell.offsetHeight / 2 - redDot.offsetHeight / 2 + "px"; 
+            redDot.style.display = "block"; 
+        }
+    </script>
+</body>
+</html>
