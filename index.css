@@ -1,0 +1,96 @@
+body {
+    background-blend-mode: multiply;
+    background-image: url("img/0_cover.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 32px;
+    color: rgb(4, 51, 22);
+    padding: 20px;
+}
+td {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px;
+    border: 2px solid black;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+}
+
+.red-dot {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%; /* 讓他是個圓 */
+    margin: auto;
+    position: absolute; /* 絕對定位 */
+    display: none; /* 剛進來看不到，按了後才有 */
+}
+
+.index-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 20px;
+    color: burlywood;
+}
+
+.modal {
+    visibility: hidden;
+    visibility: visible;
+    opacity: 1;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    /*transition: opacity 0.5s, visibility 0.5s;*/
+    display: flex;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+.modal-content {
+    background: white;
+    box-shadow: rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column; /* Ensures vertical layout */
+    width: 100%;
+    height: 10%;
+}
+
+.modal-title h2 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+}
+
+.modal-header img {
+    display: flex;
+    width: 100%; /* Ensures the image covers the width of the modal */
+    height: auto; /* Keeps image aspect ratio intact */
+}
+
+.modal-body {
+    display: flex;
+    padding: 5px;
+    text-align: left; /* Aligns text to the left */
+
+}
+
+.modal-footer {
+    display: flex;
+    padding: 5px;
+    text-align: right; /* Aligns buttons to the right */
+    border-top: 1px solid #eee; /* Adds a line above the button area */
+}
