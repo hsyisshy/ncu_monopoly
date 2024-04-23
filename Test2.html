@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="utf-8" />
+<title>！央央大富翁！</title>
+
+<!-- CSS樣式在這 -->
+<style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* 讓網頁高度等於視窗高度 */
+  width: 100vw;
+}
+.container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex: 1; /* 讓中間部分填滿剩餘空間 */
+  height: 100vh;
+  width: 100vw;
+}
+.left {
+  text-align: center; /* 文字置中 */
+  height: 100vh;
+  width: 5vw; /* 最左邊矩形的寬度 */
+  border: 5px solid #9900ff;
+  color: #000000; /* 內容顏色白色 */
+}
+.main {
+  height: 100vh;
+  width: 100vh; /* 讓中間正方形填滿剩餘空間 */
+  border: 5px solid #00b3ff;
+  color: #000000; /* 內容顏色白色 */
+}
+.right {
+  /*flex: 1;*/
+  width: 20vw;
+  border: 0px solid #ffffff;
+  color: #000000; /* 內容顏色白色 */
+}
+.right-up {
+  height: 30vh;
+  width: 19.2vw;
+  border: 5px solid #ff8c00;
+  color: #000000; /* 內容顏色白色 */
+}
+.right-up-1{
+  height: 30vh;
+  width: 18vw;
+  border: 5px solid #d0ff00;
+  color: #000000; /* 內容顏色白色 */
+}
+.right-down {
+  height: 68vh;
+  width: 38vw;
+  border: 5px solid #ff0000;
+  color: #000000; /* 內容顏色白色 */
+}
+
+table {
+  border-collapse: collapse;
+  height: 100vh;
+  width: 100vh;
+}
+th {
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 20vh;
+  width: 20vh;
+  font-size: 32px;
+  color: rgb(4, 51, 22);
+  padding: 20px;
+  aspect-ratio: 1 / 1;
+}
+td {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 10vh;
+  width: 10vh;
+  text-align: center;
+  padding: 20px;
+  border: 2px solid black;
+  font-size: 17px;
+  font-weight: bold;
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+
+.red-dot {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%; /* 讓他是個圓 */
+  margin: auto;
+  position: absolute; /* 絕對定位 */
+  display: none; /* 剛進來看不到，按了後才有 */
+}
+
+.index-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 20px;
+  color: burlywood;
+}
+
+</style><!-- end of style -->
+</head><!-- end of head -->
+
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>主<br>選<br>單<h1>
+        <a href="login.html">
+          <img src="img/0_cover.png" width="50vh" height="50vh">
+        </a>
+        <a href="login.php">
+          <img src="img/0_cover.png" width="50vh" height="50vh">
+        </a>
+    </div> <!-- 最左邊的紫色矩形 -->
+    <div class="main">
+      <table>
+      
+        <tr>    
+          <td onclick="moveRedDot(this); showDescription('中大圓環(起點)','description 1')"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('大象雕塑','description 2')"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('男九垃圾場','description 3')"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('小木屋','description 4')"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('中大湖','description 5')"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td onclick="moveRedDot(this); showDescription('觀景台','description 16')"><div class="index-number">16</div>觀景台<br><img src="img/16_觀景台.png" width="50vh" height="50vh"></td>
+          <th colspan="3" rowspan="3">\央央大富翁/<br>
+            <button id="rollButton" onclick="rollDice()">擲骰子</button>
+            <p id="diceResult">擲骰子結果：00</p><!-- 初始畫面顯示擲骰子結果00 -->
+            <p id="rollTimes">剩餘擲骰子次數：10</p> <!-- 初始畫面即顯示剩餘十次 -->
+            <p id="">個人分數：100</p> <!-- 初始畫面即顯示個人分數100 -->
+          </th>
+          <td onclick="moveRedDot(this); showDescription('壘球場','description 6')"><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td onclick="moveRedDot(this); showDescription('太極銅雕','description 15')"><div class="index-number">15</div>太極銅雕<br><img src="img/15_太極銅雕.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('依仁堂','description 7')"><div class="index-number">7</div>依仁堂<br><img src="img/7_依仁堂.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td onclick="moveRedDot(this); showDescription('校史館','description 14')"><div class="index-number">14</div>校史館<br><img src="img/14_校史館.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('oloo','description 8')"><div class="index-number">8</div>oloo<br><img src="img/8_oloo.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td onclick="moveRedDot(this); showDescription('游藝館','description 13')"><div class="index-number">13</div>游藝館(機會)<br><img src="img/13_游藝館.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('百花川','description 12')"><div class="index-number">12</div>百花川<br><img src="img/12_百花川.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('宵夜街','description 11')"><div class="index-number">11</div>宵夜街<br><img src="img/11_宵夜街.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('女生宿舍','description 10')"><div class="index-number">10</div>女生宿舍<br><img src="img/10_女生宿舍.png" width="50vh" height="50vh"></td>
+          <td onclick="moveRedDot(this); showDescription('松苑餐廳','description 9')"><div class="index-number">9</div>松苑餐廳<br><img src="img/9_松苑餐廳.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+      </table>
+
+    </div> <!-- 中間的藍色正方形 -->
+
+    <div class="right">
+      <div class="right-up">
+        <img src="img/0_cover.png" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="right-down">
+        <div id="description">
+          <h1 id="title"></h1>
+          <p id="descriptionText"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-up-1">
+      <h1>排行榜<br></h1>
+      <h3>好棒棒排行<br>中大排行</h3>
+    </div>
+
+    <div class="red-dot" id="redDot"></div>
+    </body><!-- end of body -->
+    
+     <script>
+      var rollTimes = 10; // 有十次擲骰子的機會
+    
+      function rollDice() {
+        if (rollTimes <= 0) {
+            document.getElementById("rollButton").disabled = true; // 關掉按鈕
+            return;
+        }
+    
+        // 如果剩餘次數大於０，則做請求
+        var Request = new XMLHttpRequest();
+        Request.onreadystatechange = function() {
+    
+            if (Request.readyState == 4 && Request.status == 200) {
+    
+                document.getElementById("diceResult").innerText = "擲骰子結果：" + Request.responseText;
+    
+                // 剩餘次數減一後再更新
+                rollTimes--;
+                document.getElementById("rollTimes").innerText = "剩餘擲骰子次數：" + rollTimes;
+    
+            }
+        };
+        Request.open("POST", "roll_dice.php", true); // 使用 POST 方法連接到 roll_dice.php 檔案
+        Request.send(); // 發送請求
+      }
+    
+    
+      function moveRedDot(cell) {
+        var redDot = document.getElementById("redDot");
+        var cellInfo = cell.getBoundingClientRect(); // 知道在哪
+    
+        redDot.style.left = cellInfo.left + cell.offsetWidth / 2 + "px";
+        redDot.style.top = cellInfo.top + cell.offsetHeight / 2 + "px"; // 紅點至中
+        redDot.style.display = "block";
+      }
+
+      function showDescription(title, description) {
+        // 更新標題和描述
+        document.getElementById("title").innerText = title;
+        document.getElementById("descriptionText").innerText = description;
+        
+        // 創建題目選項列表
+        var questionOptions = document.createElement("ul");
+        for (var i = 1; i <= 4; i++) {
+          var questionOption = document.createElement("li");
+          questionOption.innerText = title + "-選項" + i;
+          questionOptions.appendChild(questionOption);
+        }
+        
+        // 將題目選項列表插入到描述下面
+        document.getElementById("questionOptions").innerHTML = "";
+        document.getElementById("questionOptions").appendChild(questionOptions);
+        
+        // 創建回答選項列表
+        var answerOptions = document.createElement("ul");
+        for (var i = 1; i <= 4; i++) {
+          var answerOption = document.createElement("li");
+          answerOption.innerText = title + "-回答" + i;
+          answerOptions.appendChild(answerOption);
+        }
+        
+        // 將回答選項列表插入到描述下面
+        document.getElementById("answerOptions").innerHTML = "";
+        document.getElementById("answerOptions").appendChild(answerOptions);
+    }
+            
+    </script><!-- end of script -->
+  </div>
+
+
+</html><!-- end of html -->
