@@ -31,16 +31,12 @@
     if (isset($_POST["account"])){
        $account = $_POST["account"];
     }
-
-
     $password = "";
     if (isset($_POST["password"])){
        $password = $_POST["password"];
     }
 
-    echo "<a href='index.html'>點擊前往遊戲</a>"; 
-
+    echo "<a href='index.html'>點擊前往遊戲</a>";
 ?>
-
 </body>
 </html>
