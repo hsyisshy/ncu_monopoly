@@ -29,9 +29,9 @@
         <div class="modal" id="gateInfomodal">
           <div class="modal-content">
             <div class="modal-title">
-              <h2>中大湖</h2> <!-- Change the text to whatever suits your needs -->
+              <h2>中大湖</h2>
             </div>
-            <div class="modal-header" >
+            <div class="modal-header">
               <img src="./img/lakewoman.jpg" alt="Zhongda Lake"> <!-- Full-width image -->
             </div>
             <!-- Modal Text -->
@@ -45,23 +45,34 @@
             <div class="modal-footer">
               <button onclick="chooseOption('goldengoose')">機會（金鵝)</button>
               <button onclick="chooseOption('silverduck')">命運（銀鴨）</button>
-              <button onclick="closegateInfomodal()" style="background-color: #c62828;">Close</button>
+              <button onclick="closeModalButtonHandling()" style="background-color: #c62828;">Close</button>
             </div>
           </div>
         </div>
         <div class="modal" id="user-score">
-          <h2>User Scores</h2>
-          <table>
-            <thead>
-            <tr>
-              <th>User Name</th>
-              <th>Score</th>
-            </tr>
-            </thead>
-            <tbody id="user-list">
-            <!-- User data rows will go here -->
-            </tbody>
-          </table>
+          <div class="modal-content">
+            <div class="modal-title">
+              <h2>User Scores</h2>
+            </div>
+<!--            <div class="modal-header">-->
+<!--              <img src="./img/lakewoman.jpg" alt="Zhongda Lake"> &lt;!&ndash; Full-width image &ndash;&gt;-->
+<!--            </div>-->
+            <div class="modal-body">
+              <table>
+                <thead>
+                <tr>
+                  <th>User Name</th>
+                  <th>Score</th>
+                </tr>
+                </thead>
+                <tbody id="user-list">
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button onclick="reset()">try again</button>
+            </div>
+          </div>
         </div>
 
 

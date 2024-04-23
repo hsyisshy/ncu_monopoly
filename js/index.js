@@ -2,8 +2,9 @@ function getRandomNumber(lowerBound, upperBound) {
     return Math.floor(Math.random() * (upperBound - lowerBound + 1)) + lowerBound;
 }
 function rollDice() {
-    console.log("dice time",loadDiceTime());
+
     let rollTimes = Number(loadDiceTime()); // 有十次擲骰子的機會
+    console.log("dice time",rollTimes);
     if (rollTimes <= 0) {
         closeGameInfoModal();
         closegateInfomodal();
@@ -22,6 +23,7 @@ function rollDice() {
 }
 function storeLocation(currentLocation) {
     localStorage.setItem('currentLocation', currentLocation);
+    console.log("location has been saved")
 }
 
 function loadLocation() {
@@ -38,14 +40,20 @@ function loadScore() {
 
 function storeDiceTime(currentdiceTime) {
     localStorage.setItem('currentdiceTime', currentdiceTime);
+    return 1;
 }
 
 function loadDiceTime() {
-    return localStorage.getItem('currentdiceTime');
+    let value = localStorage.getItem('currentdiceTime');
+    return (value<0?null:value);
 }
 
 function moveRedDot(cell_id) {
-    console.log("moving to",cell_id);
+    if(cell_id ==null){
+        console.log("cell_id is null");
+        return;
+    }
+    console.log("moving to:",cell_id);
     var redDot = document.getElementById("redDot");
 
     let cell = document.getElementById(cell_id);
@@ -53,17 +61,10 @@ function moveRedDot(cell_id) {
 
     redDot.style.left = cellInfo.left + cell.offsetWidth / 2 + "px";
     redDot.style.top = cellInfo.top + cell.offsetHeight / 2 + "px"; // 紅點至中
-    redDot.style.right = cellInfo.right - cell.offsetWidth / 2 + "px";
-    redDot.style.bottom = cellInfo.bottom - cell.offsetHeight / 2 + "px"; // 紅點至中
     redDot.style.display = "block";
 
     storeLocation(cell_id);
-
-    if(cell_id=='location5'){
-        showgateInfomodal();
-        closeGameInfoModal();
-        closeUserScoreModal();
-    }
+    handleGateEffect(cell_id);
 }
 
 function closeGameInfoModal() {
@@ -87,7 +88,6 @@ function closegateInfomodal() {
     console.log("closing gateinfo")
     let modal = document.getElementById('gateInfomodal');
     modal.style.display = 'none';
-    showGameInfoModal();
 }
 
 function showUserScoreModal() {
@@ -107,8 +107,10 @@ function getNextLocation(currentLocation, step) {
     const nextIndex = (currentIndex + step) % locations.length;
     return locations[nextIndex];
 }
-function chooseOption(option) {
+function closeModalButtonHandling(option) {
     closegateInfomodal();
+    closeUserScoreModal();
+    showGameInfoModal();
 }
 function reset(){
     closegateInfomodal();
@@ -119,7 +121,15 @@ function reset(){
     storeDiceTime(Number(10));
     storeLocation("location1");
     storeScore(100);
-    moveRedDot(loadLocation());
+    let locationId = loadLocation();
+    moveRedDot(locationId);
+}
+function handleGateEffect(locationId){
+    if(locationId==='location5'){
+        showgateInfomodal();
+        closeGameInfoModal();
+        closeUserScoreModal();
+    }
 }
 
  function init() {
@@ -127,19 +137,23 @@ function reset(){
     closegateInfomodal();
     closeUserScoreModal();
     showGameInfoModal();
-    console.log(loadDiceTime());
 
 
-    if(Number(loadDiceTime())==null || Number(loadDiceTime())< -1){
-        console.log("initilize dice time");
-        storeDiceTime(Number(10));
-    }
-    console.log(loadDiceTime());
-    if(Number(loadDiceTime()) === 10){
+     var diceTime = Number(loadDiceTime());
+     console.log(diceTime);
+
+     if(diceTime < -1){
+         console.log("initialize dice time");
+         storeDiceTime(10);
+     }
+     diceTime = Number(loadDiceTime());
+    console.log(diceTime);
+    if(diceTime === 10){
          console.log("initilize location");
          storeLocation("location1");
          console.log("initilize score ");
          storeScore(100);
     }
-    moveRedDot(loadLocation());
+    let locationId = loadLocation();
+    moveRedDot(locationId);
 }
