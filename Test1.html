@@ -6,6 +6,8 @@
 		<!-- EDIT (引入 jQuery) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- CSS樣式在這 -->
+<link rel=stylesheet type="text/css" href="css\index.css">
+
 <style>
 	body {
 	  font-family: Arial, sans-serif;
@@ -384,12 +386,85 @@
 			</div>
 
 			<div class="right-up-1">
-				<h1>排行榜<br></h1>
-				<h3>好棒棒排行<br>中大排行</h3>
+				<!-- <h1>排行榜<br></h1>
+				<h3>好棒棒排行<br>中大排行</h3> -->
+				<div class="amazing-menu happy" id="hsnu1386">
+					<!-- <div class="menu-item">
+						<div class="container">
+							<div class="icon"><span class="ion-icecream"></span></div>
+							<div class="title">icecream </div>
+							<div class="arrow"><span class="ion-chevron-right"></span></div>
+							<div class="rating -r2">
+								<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+								<div class="text">56 Votes</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- <div class="menu-item">
+						<div class="container">
+							<div class="icon"><span class="ion-pizza"></span></div>
+							<div class="title">pizza</div>
+							<div class="arrow"><span class="ion-chevron-right"></span></div>
+							<div class="rating -r5">
+								<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+								<div class="text">786 Votes</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- <div class="menu-item">
+						<div class="container">
+							<div class="icon"><span class="ion-beer"></span></div>
+							<div class="title">beer</div>
+							<div class="arrow"><span class="ion-chevron-right"></span></div>
+							<div class="rating -r4">
+								<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+								<div class="text">71 Votes</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- <div class="menu-item">
+						<div class="container">
+							<div class="icon"><span class="ion-ios-wineglass"></span></div>
+							<div class="title">wine</div>
+							<div class="arrow"><span class="ion-chevron-right"></span></div>
+							<div class="rating -r4">
+								<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+								<div class="text">26 Votes</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- <div class="menu-item">
+						<div class="container">
+							<div class="icon"><span class="ion-coffee"></span></div>
+							<div class="title">coffee</div>
+							<div class="arrow"><span class="ion-chevron-right"></span></div>
+							<div class="rating -r2">
+								<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+								<div class="text">125 Votes</div>
+							</div>
+						</div>
+					</div> -->
+			
+					</div>
+				</div>
 			</div>
 
 		</div>
+
+
+		<!-- 傳分數到後端的測試UI 不需要可以註解掉到 -->
+
+		<div id="zixuanTEst" class="wrapper">
+			<p> 傳分數到後端的測試UI 不需要可以註解掉到<p>
+			<div class="search-container">
+				<input type="text" id='zixuanTEstName' class="date-from" placeholder="name">
+				<input type="text" id='zixuanTEstvalue'  class="date-to" placeholder="score">
+				<button type="submit" id='zixuanTEstbtn' class="button"onclick="sendScoreboradtodbTest()">submit   </button>
+			</div>
+			</div></form>
 	</body>
+		<!-- 傳分數到後端的測試UI 不需要可以註解掉到 -->
+
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -837,7 +912,94 @@
 				// EDIT (把分數儲存到資料庫)
 			}
 
+
 			iterate();
+
+			let scoreTozixuanDB = function(name,value){
+				  fetch(`http://localhost:3000/user?name=${name}&value=${value}`,{
+						mode: 'no-cors',
+				});
+				window.setTimeout( () => {location.reload()}, 1500);
+				// setTimeout( location.reload(),6000)
+
+			}
+
+			let addNewUser = function(name,value,indexx){
+				const element = document.getElementById("hsnu1386");
+				const node = document.createElement("div");
+				node.classList.add('menu-item')
+				// node.classList.add('bgblue')
+				const bgcolor =     [ 'var(--blue)' ,'var(--green)','var(--yellow)','var(--red)','var(--violet)'] 
+
+				node.innerHTML = `<div class="container" style="
+		background: ${bgcolor};">
+			<div class="icon"><span class="ion-icecream"></span></div>
+			<div class="title">${name} </div>
+			<div class="arrow"><span class="ion-chevron-right"></span></div>
+			<div class="rating -r2">
+				<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>\
+				<div class="text">${value} points</div>
+			</div>
+		</div>`
+
+				element.appendChild(node)
+			}
+
+			let getJSON = async(url) => {
+				let response = await fetch(url,{
+					mode: 'no-cors',
+				});
+				let JSON = await response.json();
+				// console.log('fuck',JSON)
+				JSON.forEach((element,indexx) => {
+					console.log(element)
+					addNewUser(element.name,element.value,indexx)
+
+
+				});
+
+				return await JSON
+			}
+			getJSON('http://localhost/ncu_monopoly/js/zixuan/result.json') 
+			// scoreTozixuanDB('趙紫萱',99)  //如果要新增結算成績用這個傳到後端(js/zixuan/app.js)
+			
+			
+	
+			const newDiv = document.getElementById("zixuanTEst");
+			newDiv.style.position = "absolute";
+			newDiv.style.top = "0px";
+			newDiv.style.left = "0px";
+			newDiv.style.margin = '0px';
+			// https://codepen.io/zafmndto-the-looper/pen/vYMbwWp
+				document.body.appendChild(newDiv)
+
+				
+				document.getElementById('zixuanTEstbtn').addEventListener("click", function(){
+							console.log(document.getElementById("zixuanTEstName").value)
+							console.log(document.getElementById("zixuanTEstvalue").value)
+							scoreTozixuanDB(document.getElementById("zixuanTEstName").value,document.getElementById("zixuanTEstvalue").value) 
+				})
+
+		
+			
+
 		});
+
+
+						
+		
+
 	</script>
 </html>
+
+<!-- <div class="menu-item">
+	<div class="container">
+		<div class="icon"><span class="ion-icecream"></span></div>
+		<div class="title">icecream </div>
+		<div class="arrow"><span class="ion-chevron-right"></span></div>
+		<div class="rating -r2">
+			<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+			<div class="text">56 Votes</div>
+		</div>
+	</div>
+</div> -->
