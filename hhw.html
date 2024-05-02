@@ -146,10 +146,14 @@
 						<div class="stage" id="position_0_cycle_0" style="display: none;">
 							<!-- EDIT (把這一關需要的元件都寫在這裡) -->
 							<!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                            <p>小松鼠：歡迎你來到中央大學！你可能對這個地方還很陌生，讓我們擲出骰子，到大富翁的各地去探險吧～</p>
+                            <p>這裏是起點，你會從這格開始走，讓我示範一下。</p>
+                            <p>小松鼠：經過大門口代表你又完成了一圈，幫你蓋個好寶寶章加十分，記得環校路跑也要乖乖跑喔！</p>
 							<p>歡迎來到第一格:中央大學正門(答案是選項1，答對加10分，答錯扣10分)</p>
-							<input class="position_0_cycle_0_button" type="button" value="選項1">
-							<input class="position_0_cycle_0_button" type="button" value="選項2">
-							<input class="position_0_cycle_0_button" type="button" value="選項3">
+                            <p>：這個分數是什麼呢？</p>
+                            <p>小松鼠：嘿嘿，這個分數代表你做出了符合「好學生」身份的行為，累積越高分，你的名字就可以出現在排行榜上，被大家看見喔！</p>
+                            <p>你有十次機會可以玩這個泱泱大富翁，點擊按鈕，開始擲骰子吧</p>
+							<input class="position_0_cycle_0_button" type="button" value="我了解了">
 						</div>
 						<!-- EDIT (position_1_cycle_0 代表第一次走到第二格時要顯示的關卡) -->
 						<!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
@@ -221,12 +225,13 @@
 
 						<!-- 七：依仁堂｜不乾淨的站牌 -->
                         <div class="stage" id="position_6_cycle_0" style="display: none;">
-			<p>小松鼠: 這裡是中央大學的體育中心，許多體育活動與比賽都在這進行，裡面包含籃球館、排球館、體適能健身教室、韻律教室、技擊教室，是個運動的好地方。</p>
+                            <p>小松鼠: 這裡是中央大學的體育中心，許多體育活動與比賽都在這進行，</p>
+                            <p>裡面包含籃球館、排球館、體適能健身教室、韻律教室、技擊教室，是個運動的好地方。</p>
                             <p>至於外面的公車站牌...</p>
-                            <p>消息來自於XX年學長姐</p>
+                            <p>消息來自於XX年學長姐:</p>
                             <p>乍看之下只是設於體育館前的普通公車站牌</p>
-                            <p>在陰陽眼看到的卻是不同的世界</p>
-                            <p>在晚上回宿舍的路途中 正要經過站牌時</p>
+                            <p>在陰陽眼中看到的卻是不同的世界，</p>
+                            <p>在晚上回宿舍的路途中，正要經過站牌時</p>
                             <p>學長叫住了學妹</p>
                             <p>⌈等等⌋</p>
                             <p>⌈怎麼了?⌋學妹問</p>
@@ -234,14 +239,12 @@
                             <p>⌈為什麼阿⌋</p>
                             <p>⌈沒啦 就那邊不太乾淨⌋</p>
                             <p>⌈晚上有時候看到蠻多"人"在那裡...⌋</p>
-                            <p>請選擇經過時是否查看:</p>
+                            <p>請選擇經過時是否查看站牌:</p>
                             <input class="position_6_cycle_0_button" type="button" value="否">
                             <input class="position_6_cycle_0_button" type="button" value="是">
                             <input class="position_6_cycle_0_button" type="button" value="我只是想去裡面健身而已">
                             <input class="position_6_cycle_0_button" type="button" value="我只是想去裡面游泳而已">
                         </div>
-
-
 						<!-- 八：Oloo｜ -->
 						<!-- EDIT (position_7_cycle_0 代表第一次走到第八格時要顯示的關卡) -->
 						<div class="stage" id="position_7_cycle_0" style="display: none;">
@@ -440,7 +443,7 @@
 									// EDIT (點擊選項後檢查是哪一個選項被點，並檢查點擊的選項是否為正確答案來更新分數)
 									$(".position_0_cycle_0_button").off("click");
 									let user_input = $(this).val();
-									if (user_input == "選項1")
+									if (user_input == "我了解了")
 										score += 10;
 									else
 										score -= 10;
