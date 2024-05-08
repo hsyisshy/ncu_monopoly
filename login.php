@@ -1,5 +1,15 @@
+<?php
+	require "TestDB2.php"; 
+	ForceDashboard();
+?>
+
+<!DOCTYPE html>
 <html>
-<body>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/login.js" type="text/javascript"></script>
 <title>央央大富翁</title>
 <style>
     header{
@@ -26,17 +36,38 @@
     </header>
 </head>
 <body>
-<?php
-    $account = "";
-    if (isset($_POST["account"])){
-       $account = $_POST["account"];
-    }
-    $password = "";
-    if (isset($_POST["password"])){
-       $password = $_POST["password"];
-    }
 
-    echo "<a href='index.html'>點擊前往遊戲</a>";
-?>
+  <div class="container">
+		<h3 class="head_text">Sign UP / Log In System</h1>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="block">
+				<form class="login_block">
+					<div class="header">
+						<h3>Log in</h3>
+					</div>
+					<div class="error" style="display: none;">
+						<h3></h3>
+					</div>
+					<div class="username">
+						<h3>Username</h3>
+						<input id="username" type="text" size="32" placeholder="username" name="username" autocomplete="username"/>
+						<h4>should be within 1 - 20 characters </h4>
+					</div>
+					<div class="password">
+						<h3>Password</h3>
+						<input id="password" type="password" size="32" placeholder="password" name="password" autocomplete="username"/>
+						<h4>should be within 8 - 21 characters </h4>
+					</div>
+					<div class="button">
+						<a onclick="toggle()">註冊?</a>
+						<button class="submit" type="button">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
