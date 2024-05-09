@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="utf-8" /><link rel="stylesheet" href="css/index.css">
+<title>！央央大富翁！</title>
+</head>
+
+<body>
+  <table id="gameBoard" border="3" >
+    <tr>
+      <td id="location1" onclick="moveRedDot(this.id)"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="20%" height="50%"></td>
+      <td id="location2" onclick="moveRedDot(this.id)"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="20%" height="50%"></td>
+      <td id="location3" onclick="moveRedDot(this.id)"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="20%" height="50%"></td>
+      <td id="location4" onclick="moveRedDot(this.id)"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="20%" height="50%"></td>
+      <td id="location5" onclick="moveRedDot(this.id)"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="20%" height="50%"></td>
+    </tr>
+    <tr>
+      <td id="location16" onclick="moveRedDot(this.id)"><div class="index-number">16</div>觀景台<br><img  src="img/16_觀景台.png"width="20%" height="50%"></td>
+
+      <td colspan="3" rowspan="3">
+        <div class="modal" id="game-info">
+          <h2>央央大富翁</h2>
+          <button id="rollButton" onclick="rollDice()">擲骰子</button>
+          <p id="diceResult">擲骰子結果：00</p>
+          <p id="rollTimes">剩餘擲骰子次數：10</p>
+          <p id="currentScore">個人分數：100</p>
+        </div>
+
+        <div class="modal" id="gateInfomodal">
+          <div class="modal-content">
+            <div class="modal-title">
+              <h2>中大湖</h2>
+            </div>
+            <div class="modal-header">
+              <img src="./img/lakewoman.jpg" alt="Zhongda Lake"> <!-- Full-width image -->
+            </div>
+            <!-- Modal Text -->
+
+            <div class="modal-footer">
+              <button onclick="chooseOption('goldengoose')">機會（金鵝)</button>
+              <button onclick="chooseOption('silverduck')">命運（銀鴨）</button>
+              <button onclick="closeModalButtonHandling()" style="background-color: #c62828;">Close</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal" id="user-score">
+          <div class="modal-content">
+            <div class="modal-title">
+              <h2>User Scores</h2>
+            </div>
+<!--            <div class="modal-header">-->
+<!--              <img src="./img/lakewoman.jpg" alt="Zhongda Lake"> &lt;!&ndash; Full-width image &ndash;&gt;-->
+<!--            </div>-->
+            <div class="modal-body">
+              <table>
+                <thead>
+                <tr>
+                  <th>User Name</th>
+                  <th>Score</th>
+                </tr>
+                </thead>
+                <tbody id="user-list">
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button onclick="reset()">try again</button>
+            </div>
+          </div>
+        </div>
+
+
+      </td>
+      <td id="location6" onclick="moveRedDot(this.id)"><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png"width="20%" height="50%"></td>
+    </tr>
+    <tr>
+      <td id="location15" onclick="moveRedDot(this.id)"><div class="index-number">15</div>太極銅雕<br><img  src="img/15_太極銅雕.png"width="20%" height="50%"></td>
+      <td id="location7" onclick="moveRedDot(this.id)"><div class="index-number">7</div>太極銅雕<br><img  src="img/7_依仁堂.png"width="20%" height="50%"></td>
+    </tr>
+    <tr>
+      <td id="location14" onclick="moveRedDot(this.id)"><div class="index-number">14</div>太極銅雕<br><img  src="img/14_校史館.png"width="20%" height="50%"></td>
+      <td id="location8" onclick="moveRedDot(this.id)"><div class="index-number">8</div>太極銅雕<br><img  src="img/8_oloo.png"width="20%" height="50%"></td>
+    </tr>
+    <tr>
+      <td id="location13" onclick="moveRedDot(this.id)"><div class="index-number">13</div>太極銅雕<br><img  src="img/13_游藝館.png"width="20%" height="50%"></td>
+      <td id="location12" onclick="moveRedDot(this.id)"><div class="index-number">12</div>太極銅雕<br><img  src="img/12_百花川.png"width="20%" height="50%"></td>
+      <td id="location11" onclick="moveRedDot(this.id)"><div class="index-number">11</div>太極銅雕<br><img  src="img/11_宵夜街.png"width="20%" height="50%"></td>
+      <td id="location10" onclick="moveRedDot(this.id)"><div class="index-number">10</div>太極銅雕<br><img  src="img/10_女生宿舍.png"width="20%" height="50%"></td>
+      <td id="location9" onclick="moveRedDot(this.id)"><div class="index-number">9</div>太極銅雕<br><img  src="img/9_松苑餐廳.png"width="20%" height="50%"></td>
+    </tr>
+  </table>
+
+<div class="red-dot" id="redDot"></div>
+</body>
+<script src="js/index.js"></script>
+<script>
+  window.onload = function() {
+    init();
+  };
+</script>
+</html>

@@ -1,5 +1,8 @@
 -- Initialization script for MySQL database
 
+-- Select the database to use
+USE mydatabase;
+
 -- Drop tables if they already exist
 DROP TABLE IF EXISTS history;
 DROP TABLE IF EXISTS users;

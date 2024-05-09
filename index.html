@@ -2,61 +2,364 @@
 <html lang="zh-TW">
 
 <head>
-<meta charset="utf-8" /><link rel="stylesheet" href="css/index.css">
-<title>！央央大富翁！</title>
-</head>
+  <meta charset="utf-8" />
+  <title>！央央大富翁！</title>
+
+  <link rel=stylesheet type="text/css" href="css\index.css">
+  <script src="js/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head><!-- end of head -->
 
 <body>
-  <table id="gameBoard" border="3" >
-    <tr>
-      <td id="location1" onclick="moveRedDot(this.id)"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="20%" height="50%"></td>
-      <td id="location2" onclick="moveRedDot(this.id)"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="20%" height="50%"></td>
-      <td id="location3" onclick="moveRedDot(this.id)"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="20%" height="50%"></td>
-      <td id="location4" onclick="moveRedDot(this.id)"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="20%" height="50%"></td>
-      <td id="location5" onclick="moveRedDot(this.id)"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="20%" height="50%"></td>
-    </tr>
-    <tr>
-      <td id="location16" onclick="moveRedDot(this.id)"><div class="index-number">16</div>觀景台<br><img  src="img/16_觀景台.png"width="20%" height="50%"></td>
 
-      <td colspan="3" rowspan="3">
-        <div class="modal" id="game-info">
-          <h2>央央大富翁</h2>
-          <button id="rollButton" onclick="rollDice()">擲骰子</button>
-          <p id="diceResult">擲骰子結果：00</p>
-          <p id="rollTimes">剩餘擲骰子次數：10</p>
-          <p id="currentScore">個人分數：100</p>
-        </div>
-        <div class="modal" id="gateInfomodal">
-          <div class="modal-content">
-            <div class="modal-title">
-              <h2>中大湖</h2>
+  <!-- 所有的 container -->
+  <div class="container">
+    <div class="left">
+      <h1>主<br>選<br>單<h1>
+        <a href="login.html">
+          <img src="img/0_cover.png" width="50vh" height="50vh">
+        </a>
+        <a href="login.php">
+          <img src="img/0_cover.png" width="50vh" height="50vh">
+        </a>
+    </div> <!-- 最左邊的紫色矩形 -->
+
+    <div class="main">
+      <table id="gameBoard" border="3" >
+      
+        <tr>    
+          <td id="location1" onclick="moveRedDot(id); showDescription('中大圓環(起點)','description 1')"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="50vh" height="50vh"></td>
+          <td id="location2" onclick="moveRedDot(this.id); showDescription('大象雕塑','description 2')"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="50vh" height="50vh"></td>
+          <td id="location3" onclick="moveRedDot(this.id); showDescription('男九垃圾場','description 3')"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="50vh" height="50vh"></td>
+          <td id="location4" onclick="moveRedDot(this.id); showDescription('小木屋','description 4')"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="50vh" height="50vh"></td>
+          <td id="location5" onclick="moveRedDot(this.id); showDescription('中大湖','description 5')"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td id="location16" onclick="moveRedDot(this.id); showDescription('觀景台','description 16')"><div class="index-number">16</div>觀景台<br><img src="img/16_觀景台.png" width="50vh" height="50vh"></td>
+          
+          
+          <td colspan="3" rowspan="3">
+            <div class="modal" id="game-info">
+              <h2>央央大富翁</h2>
+              <button id="rollButton" onclick="rollDice()">擲骰子</button>
+              <p id="rollTimes">剩餘擲骰子次數：10</p>
+              <p id="currentScore">個人分數：100</p>
             </div>
-            <div class="modal-header">
-              <img src="./img/lakewoman.jpg" alt="Zhongda Lake"> <!-- Full-width image -->
-            </div>
-            <!-- Modal Text -->
-            <div class="modal-body">
-              <p>[仿南京大學玄武湖而建的中大湖，景色優美，湖面碧波蕩漾，湖畔柳絮垂影，遠處的拱橋與湖心亭，宛如湖中一點墨，傍鄰的相思樹林，更添幽靜，平日可見遊人坐在碼頭上餵魚談心，野鴨與天鵝歡快嬉戲，共享一湖松風水月。]
-                  沉溺於美景的同時，一旁水面辜冬菇東冒出一堆泡泡，霎時你被濺出的水花潑了一臉。
-                  原來是湖中女神！
-                  那麼，你要選擇金鵝(機會)還是銀鴨(命運)呢？
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button onclick="chooseOption('goldengoose')">機會（金鵝)</button>
-              <button onclick="chooseOption('silverduck')">命運（銀鴨）</button>
-              <button onclick="closeModalButtonHandling()" style="background-color: #c62828;">Close</button>
-            </div>
+            <p id="diceResult">擲骰子結果：00</p>
+
+          </td>
+
+
+          <td id="location6" onclick="moveRedDot(this.id); showDescription('壘球場','description 6')"><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td id="location15" onclick="moveRedDot(this.id); showDescription('太極銅雕','description 15')"><div class="index-number">15</div>太極銅雕<br><img src="img/15_太極銅雕.png" width="50vh" height="50vh"></td>
+          <td id="location7" onclick="moveRedDot(this.id); showDescription('依仁堂','description 7')"><div class="index-number">7</div>依仁堂<br><img src="img/7_依仁堂.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td id="location14" onclick="moveRedDot(this.id); showDescription('校史館','description 14')"><div class="index-number">14</div>校史館<br><img src="img/14_校史館.png" width="50vh" height="50vh"></td>
+          <td id="location8" onclick="moveRedDot(this.id); showDescription('oloo','description 8')"><div class="index-number">8</div>oloo<br><img src="img/8_oloo.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+        <tr>
+          <td id="location13" onclick="moveRedDot(this.id); showDescription('游藝館','description 13')"><div class="index-number">13</div>游藝館(機會)<br><img src="img/13_游藝館.png" width="50vh" height="50vh"></td>
+          <td id="location12" onclick="moveRedDot(this.id); showDescription('百花川','description 12')"><div class="index-number">12</div>百花川<br><img src="img/12_百花川.png" width="50vh" height="50vh"></td>
+          <td id="location11" onclick="moveRedDot(this.id); showDescription('宵夜街','description 11')"><div class="index-number">11</div>宵夜街<br><img src="img/11_宵夜街.png" width="50vh" height="50vh"></td>
+          <td id="location10" onclick="moveRedDot(this.id); showDescription('女生宿舍','description 10')"><div class="index-number">10</div>女生宿舍<br><img src="img/10_女生宿舍.png" width="50vh" height="50vh"></td>
+          <td id="location9" onclick="moveRedDot(this.id); showDescription('松苑餐廳','description 9')"><div class="index-number">9</div>松苑餐廳<br><img src="img/9_松苑餐廳.png" width="50vh" height="50vh"></td>
+        </tr>
+    
+      </table>
+
+    </div> <!-- 中間的藍色正方形 -->
+
+    <div class="right">
+      <div class="right-up">
+        <img src="img/17_松鼠.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+      </div> <!-- 右上的橘色正方形 -->
+
+      <div class="right-down">
+        <!-- EDIT (用來顯示每一格的關卡) -->
+        <div><!-- EDIT 題目-->
+          <!-- EDIT (position_0_cycle_0 代表第一次走到第一格(起點)時要顯示的關卡) -->
+          <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+          <div class="stage" id="position_0_cycle_0" style="display: none;">
+            <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+            <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+            <p>小松鼠：歡迎你來到中央大學！你可能對這個地方還很陌生，讓我們擲出骰子，到大富翁的各地去探險吧～</p>
+            <p>這裏是起點，你會從這格開始走，讓我示範一下。</p>
+            <p>小松鼠：經過大門口代表你又完成了一圈，幫你蓋個好寶寶章加十分，記得環校路跑也要乖乖跑喔！</p>
+            <p>歡迎來到第一格:中央大學正門(答案是選項1，答對加10分，答錯扣10分)</p>
+            <p>：這個分數是什麼呢？</p>
+            <p>小松鼠：嘿嘿，這個分數代表你做出了符合「好學生」身份的行為，累積越高分，你的名字就可以出現在排行榜上，被大家看見喔！</p>
+            <p>你有十次機會可以玩這個泱泱大富翁，點擊按鈕，開始擲骰子吧</p>
+            <input class="position_0_cycle_0_button" type="button"value="我了解了">
           </div>
-        </div>
+          
+          <div class="modal" id="gateInfomodal">
+            <div class="modal-content">
+
+              <!-- EDIT (position_1_cycle_0 代表第一次走到第二格時要顯示的關卡) -->
+              <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+              <div class="stage" id="position_1_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <p>你到了一棟看起來很氣派的大樓，聽說這裡面常常會有不同的團隊進行演出，除此之外，裡面也有一間小小的咖啡廳販賣各種輕食，是文院同學常常造訪的地點。</p>
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>歡迎來到第二格:黑盒子</p>
+                <p>不過，旁邊草地上的雕像到底是什麼呢？</p>
+                <input onclick="closeModalButtonHandling()" class="position_1_cycle_0_button" type="button" value="A:青蛙">
+                <input onclick="closeModalButtonHandling()" class="position_1_cycle_0_button" type="button" value="B:大象">
+                <input onclick="closeModalButtonHandling()" class="position_1_cycle_0_button" type="button" value="C:兔子">
+              </div>
+
+              <!-- EDIT (position_2_cycle_0 代表第一次走到第三格時要顯示的關卡) -->
+              <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+              <div class="stage" id="position_2_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>眼前出現了一隻貓咪，跟隨他的身影，你進入了⋯垃圾場。</p>
+                <p>歡迎來到第三格:垃圾場</p>
+                <p>眼前的垃圾看起來都沒有經過分類，這時候你決定</p>
+                <input onclick="closeModalButtonHandling()" class="position_2_cycle_0_button" type="button" value="同流合汙">
+                <input onclick="closeModalButtonHandling()" class="position_2_cycle_0_button" type="button" value="乖乖分類">
+              </div>
+
+              <!-- EDIT (position_3_cycle_0 代表第一次走到第四格時要顯示的關卡) -->
+              <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+              <div class="stage" id="position_3_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>沿著路走，你被一股甜甜的香氣吸引，停下了腳步......</p>
+                <p>歡迎來到第四格:小木屋鬆餅</p>
+              </div>
+
+              <!-- EDIT (position_3_cycle_1 代表第二次走到第四格時要顯示的關卡) -->
+              <div class="stage" id="position_3_cycle_1" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>你眼前一黑......</p>
+                <p>歡迎來到第四格:小木屋鬆餅</p>
+              </div>
+
+              <!-- EDIT (position_3_cycle_2 代表第二次走到第四格時要顯示的關卡) -->
+              <div class="stage" id="position_3_cycle_2" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>你小心翼翼地希望不要再碰到烏鴉，三個身影此時盤旋而下。</p>
+                <p>歡迎來到第四格:小木屋鬆餅</p>
+              </div>
+
+              <!-- EDIT (position_4_cycle_0 代表第一次走到第五格時要顯示的關卡) -->
+              <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+              <div class="stage" id="position_4_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>仿南京大學玄武湖而建的中大湖，景色優美，湖面碧波蕩漾，湖畔柳絮垂影，遠處的拱橋與湖心亭，宛如湖中一點墨，傍鄰的相思樹林，更添幽靜，平日可見遊人坐在碼頭上餵魚談心，野鴨與天鵝歡快嬉戲，共享一湖松風水月。</p>
+                <p>沉溺於美景的同時，一旁水面辜冬菇東冒出一堆泡泡，霎時你被濺出的水花潑了一臉。</p>
+                <p>原來是湖中女神！</p>
+                <p>那麼，你要選擇金鵝(機會)還是銀鴨(命運)呢？</p>
+                <input onclick="closeModalButtonHandling()" class="position_4_cycle_0_button" type="button" value="金鵝(機會)">
+                <input onclick="closeModalButtonHandling()" class="position_4_cycle_0_button" type="button" value="銀鴨(命運)">
+              </div>
+
+              <!-- EDIT (position_5_cycle_0 代表第一次走到第六格時要顯示的關卡) -->
+              <div class="stage" id="position_5_cycle_0" style="display: none;">
+                <p>這裡是中央大學的棒球場，平日假日都會有學生或棒球隊在這邊運動，有時還可以看到外籍學生集結在這個場地比賽足球呢。</p>
+                <p>中央大學遠近馳名的地面施工素質，雖然有著美觀又優秀的校園圓環馬路，但卻犧牲了其他行人權益。</p>
+                <p>不只是擁有難走又容易跌倒的人行道，更有凹凸不平的運動場地，猶如月球表面一般。</p>
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <input onclick="closeModalButtonHandling()" class="position_5_cycle_0_button" type="button" value="看地板是否真的跟月球表面一樣">
+                <input onclick="closeModalButtonHandling()" class="position_5_cycle_0_button" type="button" value="沒有要看地板，我對棒球隊有沒有帥哥比較有興趣">
+                <input onclick="closeModalButtonHandling()" class="position_5_cycle_0_button" type="button" value="趕課要緊 我才不看棒球勒">
+                <input onclick="closeModalButtonHandling()" class="position_5_cycle_0_button" type="button" value="人行道坑坑巴巴的，我要專心走路">
+              </div>
+
+              <!-- 七：依仁堂｜不乾淨的站牌 -->
+              <div class="stage" id="position_6_cycle_0" style="display: none;">
+                <p>小松鼠: 這裡是中央大學的體育中心，許多體育活動與比賽都在這進行，</p>
+                <p>裡面包含籃球館、排球館、體適能健身教室、韻律教室、技擊教室，是個運動的好地方。</p>
+                <p>至於外面的公車站牌...</p>
+                <p>消息來自於XX年學長姐:</p>
+                <p>乍看之下只是設於體育館前的普通公車站牌</p>
+                <p>在陰陽眼中看到的卻是不同的世界，</p>
+                <p>在晚上回宿舍的路途中，正要經過站牌時</p>
+                <p>學長叫住了學妹</p>
+                <p>⌈等等⌋</p>
+                <p>⌈怎麼了?⌋學妹問</p>
+                <p>⌈等一下回去的路上 不要在依仁堂站牌那邊停下來⌋</p>
+                <p>⌈為什麼阿⌋</p>
+                <p>⌈沒啦 就那邊不太乾淨⌋</p>
+                <p>⌈晚上有時候看到蠻多"人"在那裡...⌋</p>
+                <p>請選擇經過時是否查看站牌:</p>
+                <input onclick="closeModalButtonHandling()" class="position_6_cycle_0_button" type="button" value="否">
+                <input onclick="closeModalButtonHandling()" class="position_6_cycle_0_button" type="button" value="是">
+                <input onclick="closeModalButtonHandling()" class="position_6_cycle_0_button" type="button" value="我只是想去裡面健身而已">
+                <input onclick="closeModalButtonHandling()" class="position_6_cycle_0_button" type="button" value="我只是想去裡面游泳而已">
+              </div>
+
+
+              <!-- 八：Oloo｜ -->
+              <!-- EDIT (position_7_cycle_0 代表第一次走到第八格時要顯示的關卡) -->
+              <div class="stage" id="position_7_cycle_0" style="display: none;">
+                <p>這是中央大學校園內的交通工具之一。年滿14歲以上，下載APP註冊並綁定簽帳金融卡成為會員就可以上去騎了。</p>
+                <p>Oloo既省時又便利，可以滿足校園內短程通勤需求。最高速限是15km/h，約為步行速度的三倍。</p>
+                <p>你在學校應該會蠻常看到很多人騎著它去上下課，雖然規定是說只能一台載一個人啦，但還是有些人會雙載，</p>
+                <p>而且其實一趟計費下來也不便宜，有時候還會忘記歸還被扣費，多數人還是騎自己的腳踏車。</p>
+                <p>出門發現可能會遲到，選擇要不要騎上Oloo：</p>
+                <input onclick="closeModalButtonHandling()" class="position_7_cycle_0_button" type="button" value="那麼好騎 當然要阿">
+                <input onclick="closeModalButtonHandling()" class="position_7_cycle_0_button" type="button" value="雖然我沒騎過 但我想試試看">
+                <input onclick="closeModalButtonHandling()" class="position_7_cycle_0_button" type="button" value="走快一點就好，我才不騎">
+                <input onclick="closeModalButtonHandling()" class="position_7_cycle_0_button" type="button" value="不要，這個太貴了">
+              </div>
+
+              <!-- 9.松苑餐廳 -->			
+              <!-- EDIT (position_8_cycle_0 代表第一次走到第九格時要顯示的關卡) -->
+              <div class="stage" id="position_8_cycle_0" style="display: none;">
+                <p>這裡就是松苑餐廳！裡面有許多店家要去哪裡看看呢？</p>
+                <p>請選擇地方：</p>
+                <input onclick="closeModalButtonHandling()" class="position_8_cycle_0_button" type="button" value="a. 露易莎">
+                <input onclick="closeModalButtonHandling()" class="position_8_cycle_0_button" type="button" value="b. 漢堡王">
+                <input onclick="closeModalButtonHandling()" class="position_8_cycle_0_button" type="button" value="c. 全家">
+              </div>
+              <!-- EDIT (position_8_cycle_1 代表第二次走到第九格時要顯示的關卡) -->
+              <div class="stage" id="position_8_cycle_1" style="display: none;">
+                <p>小松鼠："哇，全家裡賣的東西玲瑯滿目耶，甚至還有校內85折！"</p>
+                <p>請選擇買什麼：</p>
+                <input onclick="closeModalButtonHandling()" class="position_8_cycle_1_button" type="button" value="雨傘">
+                <input onclick="closeModalButtonHandling()" class="position_8_cycle_1_button" type="button" value="食物">
+                <input onclick="closeModalButtonHandling()" class="position_8_cycle_1_button" type="button" value="架上的學生證">
+              </div>
+
+              <!-- 10.宿舍區 -->
+              <!-- 小松鼠: -->
+              <!-- EDIT (position_9_cycle_0 代表第一次走到第十格時要顯示的關卡) -->
+              <div class="stage" id="position_9_cycle_0" style="display: none;"> 
+                <p>這附近接近宿舍區喔。有男3、6、7、13還有女1-4、14。通常新生會入住男9、13以及女1-4喔。去看看你的寢室吧。</p>
+                <p>走進你的宿舍，突然有一個人迎面向你跑來：</p>
+                <p>「不好意思，請問你有看到我的學生證嗎？」</p>
+                <input onclick="closeModalButtonHandling()" class="position_9_cycle_0_button" type="button" value="有">
+                <input onclick="closeModalButtonHandling()" class="position_9_cycle_0_button" type="button" value="沒有">
+              </div>
+
+              <!-- 11.宵夜街 -->
+              <!-- 小松鼠: -->	
+              <!-- EDIT (position_10_cycle_0 代表第一次踩到第十一格時要顯示的關卡) -->
+              <div class="stage" id="position_10_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>這裡就是宵夜街喔！從入口進來後便有許多的店家，而且他們通常都會營業到很晚，所以是想吃宵夜的人的好去處喔！</p>
+                <p>吃個宵夜吧</p>
+                <input onclick="closeModalButtonHandling()" class="position_10_cycle_0_button" type="button" value="吃個宵夜">
+              </div>
+              
+              <!-- EDIT (position_10_cycle_1 代表第二次踩到第十一格時要顯示的關卡) -->
+              <div class="stage" id="position_10_cycle_1" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <input onclick="closeModalButtonHandling()" class="position_10_cycle_1_button" type="button" value="真的好飽">
+              </div>
+              
+              <!-- EDIT (position_10_cycle_1 代表第一次踩到第十三格時要顯示的關卡) -->
+              <div class="stage" id="position_12_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <p>聖經研究社邀請您一同聆聽福音?</p>
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_0_button" type="button" value="答應">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_0_button" type="button" value="因社恐不敢走掉，留下">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_0_button" type="button" value="掉頭就走">
+              </div>
+
+
+              <!-- EDIT (position_12_cycle_1 代表第二次踩到第十三格時要顯示的關卡) -->
+              <div class="stage" id="position_12_cycle_1" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <p>晚餐時刻火舞社正在志道樓廣場前表演，你會?</p>
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_1_button" type="button" value="吃飯皇帝大">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_1_button" type="button" value="好看一直看">
+              </div>
+                
+              <!-- EDIT (position_12_cycle_2 代表第三次踩到第十三格時要顯示的關卡) -->
+              <div class="stage" id="position_12_cycle_2" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <p>期末時，許多的社團活動和課業使你身心俱疲，你會?</p>
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_2_button" type="button" value="專心於課業">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_2_button" type="button" value="期末是甚麼？能吃嗎？">
+              </div>
+                
+              <!-- EDIT (position_12_cycle_3 代表第四次踩到第十三格時要顯示的關卡) -->
+              <div class="stage" id="position_12_cycle_3" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <p>易有太極、是生兩儀。兩儀生四象、四象生八卦。說到太極，你會想到?</p>
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_3_button" type="button" value="太極飯糰">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_3_button" type="button" value="太極社">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_3_button" type="button" value="八卦">
+              </div>
+
+              <!-- EDIT (position_12_cycle_4 代表第五次踩到第十三格時要顯示的關卡) -->
+              <div class="stage" id="position_12_cycle_4" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <p>室友參加社團活動結束後竟下起了大雨，當他匆匆忙忙地趕回到了宿舍，你會?</p>
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_4_button" type="button" value="選擇無視">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_4_button" type="button" value="請他多喝熱水">
+                <input onclick="closeModalButtonHandling()" class="position_12_cycle_4_button" type="button" value="拿毛巾幫他擦拭濕潤的頭髮">
+              </div>
+
+              <!-- 第一次踩到 -->
+              <div class="stage" id="position_13_cycle_0" style="display: none;">
+                <p>這棟紅磚建築就是中央大學的「校史館」喔！裏頭蒐藏著許多我們學校的故事。既然都入學了，就要做一位稱職的中大生。</p>
+                <p>請問我們中央大學的「校訓」是？</p>
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_0_button" type="button" value="誠實">
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_0_button" type="button" value="誠樸">
+                <input onclick="closeModalButtonHandling()" class="position_13_cyc le_0_button" type="button" value="誠信">
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_0_button" type="button" value="誠心">
+              </div>
+                
+              <!-- 第二次踩到 -->
+              <div class="stage" id="position_13_cycle_1" style="display: none;">
+                <p>小松鼠:我們又經過校史館了，相信透過這段時間的探索你對學校一定有了更深入的了解。接下來這題就有點難度囉！</p>
+                <p>中央大學原先於大陸辦校，後隨國民政府遷台後復校。請問今年(2024)為中大在台復校的第幾年？</p>
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_1_button" type="button" value="60">
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_1_button" type="button" value="61">
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_1_button" type="button" value="62">
+                <input onclick="closeModalButtonHandling()" class="position_13_cycle_1_button" type="button" value="63">
+              </div>
+
+              <!-- EDIT (position_14_cycle_0 代表第一次走到第十五格時要顯示的關卡) -->
+              <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+              <div class="stage" id="position_14_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>小松鼠:看看你的旁邊～這是「太極銅雕」喔。說出來怕嚇到你，這可是雕塑大師朱銘的作品!</p>
+                <p>形似二人對招，雙手相纏，如太極之圓融，渾然一體，是富涵中華傳統文化的精美藝術喔。</p>
+                <p>請問朱銘是下列何者？</p>
+                <input onclick="closeModalButtonHandling()" class="position_14_cycle_0_button" type="button" value="照片a">
+                <input onclick="closeModalButtonHandling()" class="position_14_cycle_0_button" type="button" value="照片b">
+              </div>
+
+              <!-- EDIT (position_15_cycle_0 代表第一次走到第十六格時要顯示的關卡) -->
+              <!-- EDIT (style 可以自己調整，但 display: none 一定要寫，剛開始所有關卡都是隱藏的，走到對應格子時再顯示關卡) -->
+              <div class="stage" id="position_15_cycle_0" style="display: none;">
+                <!-- EDIT (把這一關需要的元件都寫在這裡) -->
+                <!-- EDIT (其中選項按鈕要屬於同一個 class) -->
+                <p>恭喜你將中大的校園走完了。這裡的風景好美喔～拍一張照片再回去吧。</p>
+                <input class="position_15_cycle_0_button" type="file">
+              </div>
+
+            </div> <!--題目-->
+          </div>
+        </div><!-- EDIT 題目-->
+
+      
         <div class="modal" id="user-score">
           <div class="modal-content">
             <div class="modal-title">
-              <h2>User Scores</h2>
+              <h2>遊戲結束！</h2>
             </div>
-<!--            <div class="modal-header">-->
-<!--              <img src="./img/lakewoman.jpg" alt="Zhongda Lake"> &lt;!&ndash; Full-width image &ndash;&gt;-->
-<!--            </div>-->
+
             <div class="modal-body">
               <table>
                 <thead>
@@ -65,43 +368,594 @@
                   <th>Score</th>
                 </tr>
                 </thead>
-                <tbody id="user-list">
-                </tbody>
+
+                <tbody id="user-list"></tbody>
               </table>
             </div>
+
             <div class="modal-footer">
-              <button onclick="reset()">try again</button>
+              <button onclick="reset()">再玩一次！</button>
             </div>
           </div>
-        </div>
+        </div> <!-- 結束後的分數顯示 -->
 
+      </div><!-- 右下的紅色方形 -->
 
-      </td>
-      <td id="location6" onclick="moveRedDot(this.id)"><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png"width="20%" height="50%"></td>
-    </tr>
-    <tr>
-      <td id="location15" onclick="moveRedDot(this.id)"><div class="index-number">15</div>太極銅雕<br><img  src="img/15_太極銅雕.png"width="20%" height="50%"></td>
-      <td id="location7" onclick="moveRedDot(this.id)"><div class="index-number">7</div>太極銅雕<br><img  src="img/7_依仁堂.png"width="20%" height="50%"></td>
-    </tr>
-    <tr>
-      <td id="location14" onclick="moveRedDot(this.id)"><div class="index-number">14</div>太極銅雕<br><img  src="img/14_校史館.png"width="20%" height="50%"></td>
-      <td id="location8" onclick="moveRedDot(this.id)"><div class="index-number">8</div>太極銅雕<br><img  src="img/8_oloo.png"width="20%" height="50%"></td>
-    </tr>
-    <tr>
-      <td id="location13" onclick="moveRedDot(this.id)"><div class="index-number">13</div>太極銅雕<br><img  src="img/13_游藝館.png"width="20%" height="50%"></td>
-      <td id="location12" onclick="moveRedDot(this.id)"><div class="index-number">12</div>太極銅雕<br><img  src="img/12_百花川.png"width="20%" height="50%"></td>
-      <td id="location11" onclick="moveRedDot(this.id)"><div class="index-number">11</div>太極銅雕<br><img  src="img/11_宵夜街.png"width="20%" height="50%"></td>
-      <td id="location10" onclick="moveRedDot(this.id)"><div class="index-number">10</div>太極銅雕<br><img  src="img/10_女生宿舍.png"width="20%" height="50%"></td>
-      <td id="location9" onclick="moveRedDot(this.id)"><div class="index-number">9</div>太極銅雕<br><img  src="img/9_松苑餐廳.png"width="20%" height="50%"></td>
-    </tr>
-  </table>
+      <!-- <div class="right-up-1">
+        <h1>排行榜<br></h1>
+        <h3>好棒棒排行<br>中大排行</h3>
+      </div> 右上的黃色正方形 -->
+  
+  </div> <!-- end of container -->
 
-<div class="red-dot" id="redDot"></div>
-</body>
-<script src="js/index.js"></script>
+	<!-- 傳分數到後端的測試UI 不需要可以註解掉到 -->
+	<!-- <div id="zixuanTEst" class="wrapper">
+			<p> 傳分數到後端的測試UI 不需要可以註解掉到<p>
+			<div class="search-container">
+				<input type="text" id='zixuanTEstName' class="date-from" placeholder="name">
+				<input type="text" id='zixuanTEstvalue'  class="date-to" placeholder="score">
+				<button type="submit" id='zixuanTEstbtn' class="button"onclick="sendScoreboradtodbTest()">submit</button>
+			</div>
+  </div></form> -->
+	<!-- 傳分數到後端的測試UI 不需要可以註解掉到 -->
+
+  <!-- 玩家的紅點點 -->
+  <div class="red-dot" id="redDot"></div>
+  <!-- 玩家的紅點點 -->
+
+</body><!-- end of body -->
+    
 <script>
-  window.onload = function() {
-    init();
-  };
-</script>
-</html>
+    window.onload = function() {
+      init();
+    };
+
+            
+</script><!-- end of script -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    let score = 0;    // EDIT (得到的分數)
+    let position = 0; // EDIT (現在在第幾格 (0~15))
+    let cycle = 0;    // EDIT (現在是第幾圈)
+    let round = 10;  // EDIT (總共擲 10 次骰子)
+          let ncuscore = 0;//EDIT(中大人指數)
+          let ncuchance = 0;//EDIT(碰到中大人指數的次數)
+          let ncuornot = ncuscore/ncuchance;
+
+    function doIteration(currentRound, totalRound) {
+      return new Promise(resolve => {
+        if (currentRound < totalRound)
+        {
+          // EDIT (擲骰子並更新位置和圈數，但在起點時不擲骰子)
+          // EDIT (應該要先按「擲骰子」的按鈕，按按鈕之後再隨機產生骰子的點數，但先跳過這個)
+          if (currentRound > 0)
+          {
+            let dice = 1; // Math.floor(6 * Math.random()) + 1;
+            position += dice;
+            if (position >= 16)
+            {
+              cycle++;
+              position %= 16;
+            }
+          }
+
+          // EDIT (先把所有關卡隱藏起來)
+          $(".stage").hide();
+
+          // EDIT (根據現在的位置和圈數決定要顯示和執行哪一個關卡)
+          if (position == 0)
+          {
+            if (cycle == 0) // EDIT (第一次到達第一格(起點))
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_0_cycle_0").show();
+              // EDIT (偵測關卡的選項有被有被點擊)
+              $(".position_0_cycle_0_button").one("click", function() {
+                // EDIT (點擊選項後檢查是哪一個選項被點，並檢查點擊的選項是否為正確答案來更新分數)
+                $(".position_0_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "我了解了")
+                  score += 10;
+                else
+                  score -= 10;
+                alert(`score = ${score}`);
+                // EDIT (進到下一輪)
+                resolve(currentRound + 1);
+              });
+            }
+            else if (cycle == 1)
+            {
+              // 第二次到起點要做的事情
+            }
+            else if (cycle == 2)
+            {
+              // 第三次到起點要做的事情
+            }
+          }
+          else if (position == 1)
+          {
+            if (cycle == 0)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_1_cycle_0").show();
+              // EDIT (偵測關卡的選項有被有被點擊)
+              $(".position_1_cycle_0_button").one("click", function() {
+                // EDIT (點擊選項後檢查是哪一個選項被點，並檢查點擊的選項是否為正確答案來更新分數)
+                $(".position_1_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "B:大象")
+                  score += 10;
+                else
+                  score -= 10;
+                alert(`score = ${score}`);
+                // EDIT (進到下一輪)
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 2)
+          {
+            if (cycle == 0)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_2_cycle_0").show();
+              // EDIT (偵測關卡的選項有被有被點擊)
+              $(".position_2_cycle_0_button").one("click", function() {
+                // EDIT (點擊選項後檢查是哪一個選項被點，並檢查點擊的選項是否為正確答案來更新分數)
+                $(".position_2_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "乖乖分類")
+                  score += 10;
+                else
+                  score -= 10;
+                alert(`score = ${score}`);
+                resolve(currentRound + 1);
+              });
+            }
+
+          }
+          else if (position == 3)//等待修改
+          {
+            if (cycle == 0)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_3_cycle_0").show();
+                              alert("烏丘媽媽:哪裡來的%@$*想動我的蛋！");
+                              ncuscore += 10;
+                              ncuchance += 10;
+              // position--;
+              resolve(currentRound + 1);
+            }
+                          else if(cycle == 1)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_3_cycle_1").show();
+              alert("烏丘爸爸:還敢來!");
+              // position--;
+              resolve(currentRound + 1);
+            }
+                          else if(cycle == 2)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_3_cycle_2").show();
+                              score += 10;
+              alert("烏鴉全家:對不起，你不是壞人!觸發:烏鴉的報恩，`score = ${score}`");
+              // position--;
+              resolve(currentRound + 1);
+            }
+          }
+          else if (position == 4)//等待修改
+          {
+            if (cycle == 0)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_4_cycle_0").show();
+              // EDIT (偵測關卡的選項有被有被點擊)
+              $(".position_4_cycle_0_button").one("click", function() {
+                // EDIT (點擊選項後檢查是哪一個選項被點，並檢查點擊的選項是否為正確答案來更新分數)
+                $(".position_4_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "乖乖分類")
+                  score += 10;
+                else
+                  score -= 10;
+                alert(`score = ${score}`);
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 5)//步數
+          {
+            if (cycle == 0)
+            {
+              // EDIT (把關卡的元件顯示出來)
+              $("#position_5_cycle_0").show();
+              // EDIT (偵測關卡的選項有被有被點擊)
+              $(".position_5_cycle_0_button").one("click", function() {
+                // EDIT (點擊選項後檢查是哪一個選項被點，並檢查點擊的選項是否為正確答案來更新分數)
+                $(".position_5_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "看地板是否真的跟月球表面一樣")
+                {	score -= 10;
+                   alert(`走路踩到坑洞跌倒，然後上課遲到，下次行動步數-1, score = ${score}`);
+                }
+                else if (user_input == "沒有要看地板，我對棒球隊有沒有帥哥比較有興趣")
+                {
+                  score += 20;
+                  alert(`看到學長打出一個全壘打，直接被帥到，score = ${score}`);
+                }
+                else if (user_input == "趕課要緊 我才不看棒球勒")
+                {		
+                  score += 10;
+                  alert(`你快步走過,很幸運沒有跌倒,下次行動步數+1，score = ${score}`);
+                }
+                else if (user_input == "人行道坑坑巴巴的，我要專心走路")
+                {
+                  score += 25;
+                  alert(`很棒 你還記得中央的人行道很破，一不注意就會跌倒，score = ${score}`);
+                }
+                alert(`score = ${score}`);
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 6) 
+          {
+            if (cycle == 0) {
+              $("#position_6_cycle_0").show();
+              $(".position_6_cycle_0_button").one("click", function() {
+                $(".position_6_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "否") {
+                  score -= 10;
+                  alert(`走過時你突然感覺背後涼涼的，score = ${score}`);
+                } else if (user_input === "是") {
+                  score += 10;
+                  alert(`你膽大的在站牌附近逛，發現什麼鬼都沒有，score = ${score}`);
+                } else if (user_input === "我只是想去裡面健身而已") {
+                  score += 25;
+                  alert(`是個會運動的好孩子呢，score = ${score}`);
+                } else if (user_input === "我只是想去裡面游泳而已") {
+                  score -= 20;
+                  alert(`ㄟ那個，裡面沒有游泳館耶，裡面只有籃球館、排球館、體適能健身教室、韻律教室、技擊教室，score = ${score}`);
+                }
+                resolve(currentRound + 1);{}
+              });
+            }
+          }
+          else if (position == 7) 
+          {
+            if (cycle == 0) {
+              // 顯示關卡元件
+              $("#position_7_cycle_0").show();
+              // 偵測選項點擊
+              $(".position_7_cycle_0_button").one("click", function() {
+                // 取得玩家選擇
+                $(".position_7_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                // 根據玩家選擇更新分數
+                if (user_input === "那麼好騎 當然要阿") {
+                  score -= 20;
+                  alert(`你騎上了oloo(很貴), 下次行動步數乘3倍, score = ${score}`);
+                } else if (user_input === "雖然我沒騎過 但我想試試看") {
+                  score -= 10;
+                  alert(`你上了Oloo發現不會騎，在半路上摔倒, score = ${score}`);
+                } else if (user_input === "走快一點就好，我才不騎") {
+                  score -= 10;
+                  alert(`在路上走被新生騎Oloo撞到, score = ${score}`);
+                } else if (user_input === "不要，這個太貴了") {
+                  score -= 20;
+                  alert(`走到下個教室太遠，上課遲到, score = ${score}`);
+                }
+                // 進入下一輪
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 8) {
+            if (cycle == 0) {
+              $("#position_8_cycle_0").show();
+              $(".position_8_cycle_0_button").one("click", function() {
+                $(".position_8_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "雨傘") {
+                  score -= 20;
+                  alert(`購買了雨傘，score = ${score}`);
+                } else if (user_input === "食物") {
+                  score += 20;
+                  alert(`購買了食物，score = ${score}`);
+                } else if (user_input === "架上的學生證") {
+                  score -= 10;
+                  alert(`購買了架上的學生證，怎麼有在賣學生證??，score = ${score}`);
+                }
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 9) {
+            if (cycle == 0) {
+              $("#position_9_cycle_0").show();
+              $(".position_9_cycle_0_button").one("click", function() {
+                $(".position_9_cycle_0_button").off("click");
+              });
+            }
+          }
+          else if (position == 10) {
+            if (cycle == 0) {
+              // 第一次踩到宵夜街
+              $("#position_10_cycle_0").show();
+              $(".position_10_cycle_0_button").one("click", function() {
+                $(".position_10_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "吃個宵夜") {
+                  // 吃宵夜情境
+                  score += 40;
+                  alert(`吃個宵夜\n+40 分\nscore = ${score}`);
+                }
+                resolve(currentRound + 1);
+              });
+            } else if (cycle == 1) {
+              // 第二次踩到宵夜街
+              $("#position_10_cycle_1").show();
+              $(".position_10_cycle_1_button").one("click", function() {
+                $(".position_10_cycle_1_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "真的好飽") {
+                  // 飽了情境
+                  score -= 10;
+                  alert(`真的好飽\n-10 分\nscore = ${score}`);
+                }
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 11) {
+            if (cycle == 0) {
+              $("#position_11_cycle_0").show();
+              $(".position_11_cycle_0_button").one("click", function() {
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 12) {
+            if (cycle == 0) {
+              // 第一次踩到游藝館
+              $("#position_12_cycle_0").show();
+              $(".position_12_cycle_0_button").one("click", function() {
+                $(".position_12_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "答應") {
+                  // 接受邀請
+                  score += 100;
+                  alert(`接受洗禮的過程中，遇到了真心好友\n+100 分\nscore = ${score}`);
+                } else if (user_input === "因社恐不敢走掉，留下") {
+                  // 社恐情境
+                  score -= 50;
+                  alert(`上課遲到，身心受創\n-50 分\nscore = ${score}`);
+                } else {
+                  // 掉頭就走
+                  alert(`無事發生`);
+                }
+                resolve(currentRound + 1);
+              });
+            } else if (cycle == 1) {
+              // 第二次踩到游藝館
+              $("#position_12_cycle_1").show();
+              $(".position_12_cycle_1_button").one("click", function() {
+                $(".position_12_cycle_1_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "吃飯皇帝大") {
+                  extraDiceRollChance += 1;
+                  alert(`回到宵夜街並飽餐一頓\n+1 次擲骰子的機會\nscore = ${score}`);
+                } else if (user_input === "好看一直看") {
+                  extraRoundSkip += 1;
+                  alert(`當天蓋起了黑布，漫漫星光下出現了數不清的火團，他們飛啊轉啊，一道道銀色軌跡如同流星一般，讓你一陣眩暈。\n暫停 1 回合\nscore = ${score}`);
+                }
+                resolve(currentRound + 1);
+              });
+            } else if (cycle == 2) {
+              // 第三次踩到游藝館
+              $("#position_12_cycle_2").show();
+              $(".position_12_cycle_2_button").one("click", function() {
+                $(".position_12_cycle_2_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "專心於課業") {
+                  // 專心於課業情境
+                  score *= 2;
+                  alert(`恭喜啊恭喜，歐趴呀歐趴，大街小巷都樂開了花！\n當前金錢*2\nscore = ${score}`);
+                } else if (user_input === "期末是甚麼？能吃嗎？") {
+                  // 期末是甚麼？能吃嗎？情境
+                  extraRoundSkip += 2;
+                  alert(`你參加了許多社團，現在卻獨自一人啜泣。\n你交到了無數好友，他們卻自己拍畢業照。\n暫停 2 回合\nscore = ${score}`);
+                }
+                resolve(currentRound + 1);
+              });
+            } else if (cycle == 3) {
+              // 第四次踩到游藝館
+              $("#position_12_cycle_3").show();
+              $(".position_12_cycle_3_button").one("click", function() {
+                $(".position_12_cycle_3_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "太極飯糰") {
+                  score += 50;
+                  alert(`甚麼，居然有壽喜燒？太酷了吧！飽餐一頓\n+50 分\nscore = ${score}`);
+                } else if (user_input === "太極社") {
+                  alert(`喝！哈！練太極壯身體，你的身體機能以提升\n+100 分\nscore = ${score}`);
+                } else if (user_input === "八卦") {
+                  alert(`路上遇到一位算命大師，人人都說他算的妙算的準，於是你也想過去試試看。沒想到他幫你掐指一算，你的命數已盡。\n生命如同花落下，人生如夢一場空，要是有來世我再也不會算命了。\n遊戲結束\nscore = ${score}`);
+                  gameOver = true;
+                }
+                resolve(currentRound + 1);
+              });
+            } else if (cycle == 4) {
+              // 第五次踩到游藝館
+              $("#position_12_cycle_4").show();
+              $(".position_12_cycle_4_button").one("click", function() {
+                $(".position_12_cycle_4_button").off("click");
+                let user_input = $(this).val();
+                if (user_input === "選擇無視") {
+                  extraRoundSkip += 1;
+                  alert(`室友感冒並傳染給你！\n暫停 1 回合\nscore = ${score}`);
+                } else if (user_input === "請他多喝熱水") {
+                  score += 50;
+                  alert(`古人云：「熱水既能暖身亦能暖心。」沒事多喝水，多喝水沒事，你的室友身體健健康康，而你也感到心神安定。\n+50 分\nscore = ${score}`);
+                } else if (user_input === "拿毛巾幫他擦拭濕潤的頭髮") {
+                  extraRoundSkip += 1;
+                  score *= 2;
+                  alert(`觸碰到他的髮絲之際，你心想這髮質怎麼這麼柔軟滑順？呆滯之餘，他回頭望向你，兩眼對視間彷彿出現一道電流，你倆 惺惺相惜、情不自禁。\n暫停 1 回合，當前金錢*2\nscore = ${score}`);
+                }
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 13) {
+            if (cycle == 0) {
+              $("#position_13_cycle_0").show();
+              $(".position_13_cycle_0_button").one("click", function() {
+                $(".position_13_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "B:誠樸") {
+                  score += 20;
+                  alert("答對了！校訓是「誠樸」，你真是一位稱職的中大生！");
+                } else {
+                  score -= 20;
+                  alert("答錯了！校訓是「誠樸」，你要更加了解學校的故事喔！");
+                }
+                resolve(currentRound + 1);
+              });
+            }
+            else if (cycle == 1) {
+              $("#position_13_cycle_1").show();
+              $(".position_13_cycle_1_button").one("click", function() {
+                $(".position_13_cycle_1_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "C:62") {
+                  score += 20;
+                  alert("答對了！2024年是中大在台復校的第62年！");
+                } else {
+                  score -= 20;
+                  alert("答錯了！2024年是中大在台復校的第62年！");
+                }
+                resolve(currentRound + 1);
+              });
+            }
+          }
+          else if (position == 14) {
+            if (cycle == 0) {
+              $("#position_14_cycle_0").show();
+              $(".position_14_cycle_0_button").one("click", function() {
+                $(".position_14_cycle_0_button").off("click");
+                let user_input = $(this).val();
+                if (user_input == "A:照片a") {
+                  alert("答對了！朱銘是照片a中的人物！");
+                } else {
+                  alert("答錯了！朱銘不是照片b中的人物！");
+                }
+                resolve(currentRound + 1);
+              });
+            }
+          }
+        }
+        else
+        {
+          resolve();
+        }
+      });
+    }
+
+    async function iterate() {
+      let currentRound = 0;
+      const totalRound = 10;
+      while (currentRound < totalRound)
+        currentRound = await doIteration(currentRound, totalRound);
+      // EDIT (把分數儲存到資料庫)
+    }
+
+    iterate();
+
+    let scoreTozixuanDB = function(name,value){
+				  fetch(`http://localhost:3000/user?name=${name}&value=${value}`,{
+						mode: 'no-cors',
+				});
+				window.setTimeout( () => {location.reload()}, 1500);
+				// setTimeout( location.reload(),6000)
+
+		}
+
+    let addNewUser = function(name,value,indexx){
+				const element = document.getElementById("hsnu1386");
+				const node = document.createElement("div");
+				node.classList.add('menu-item')
+				// node.classList.add('bgblue')
+				const bgcolor =     [ 'var(--blue)' ,'var(--green)','var(--yellow)','var(--red)','var(--violet)']
+        node.innerHTML = `<div class="container" style="background: ${bgcolor};">
+        <div class="icon"><span class="ion-icecream"></span></div>
+        <div class="title">${name} </div>
+        <div class="arrow"><span class="ion-chevron-right"></span></div>
+        <div class="rating -r2">
+          <div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>\
+          <div class="text">${value} points</div>
+        </div>
+      </div>`
+
+			element.appendChild(node)
+
+    }
+
+    let getJSON = async(url) => {
+				let response = await fetch(url,{
+					mode: 'no-cors',
+				});
+				let JSON = await response.json();
+				// console.log('fuck',JSON)
+				JSON.forEach((element,indexx) => {
+					console.log(element)
+					addNewUser(element.name,element.value,indexx)
+
+
+				});
+
+				return await JSON
+			}
+			getJSON('http://localhost/ncu_monopoly/js/zixuan/result.json') 
+			// scoreTozixuanDB('趙紫萱',99)  //如果要新增結算成績用這個傳到後端(js/zixuan/app.js)
+			
+			
+	
+			const newDiv = document.getElementById("zixuanTEst");
+			newDiv.style.position = "absolute";
+			newDiv.style.top = "0px";
+			newDiv.style.left = "0px";
+			newDiv.style.margin = '0px';
+			// https://codepen.io/zafmndto-the-looper/pen/vYMbwWp
+				document.body.appendChild(newDiv)
+
+				
+				document.getElementById('zixuanTEstbtn').addEventListener("click", function(){
+							console.log(document.getElementById("zixuanTEstName").value)
+							console.log(document.getElementById("zixuanTEstvalue").value)
+							scoreTozixuanDB(document.getElementById("zixuanTEstName").value,document.getElementById("zixuanTEstvalue").value) 
+				})
+
+
+
+  });
+
+
+
+</script><!-- end of script -->
+
+</html><!-- end of html -->
+
+<!-- <div class="menu-item">
+	<div class="container">
+		<div class="icon"><span class="ion-icecream"></span></div>
+		<div class="title">icecream </div>
+		<div class="arrow"><span class="ion-chevron-right"></span></div>
+		<div class="rating -r2">
+			<div class="stars"><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span><span class="ion-star"></span></div>
+			<div class="text">56 Votes</div>
+		</div>
+	</div>
+</div> -->
