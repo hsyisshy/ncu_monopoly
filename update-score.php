@@ -8,14 +8,8 @@ error_reporting(E_ALL);
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!$data) {
-    error_log("Invalid JSON input");
-    echo json_encode(['success' => false, 'message' => 'Invalid JSON input']);
-    exit();
-}
-
-$username = $data['username'];
-$password = $data['password'];
+$userId = $data['userId'];
+$scoreChange = $data['scoreChange'];
 
 $servername = "localhost";
 $dbusername = "root";
@@ -30,10 +24,12 @@ if ($conn->connect_error) {
     exit();
 }
 
-$sql = "INSERT INTO users (user_name, user_password, user_score) VALUES ('$username', '$password', 100)";
+$sql = "UPDATE users SET user_score = user_score + $scoreChange WHERE id = $userId";
 if ($conn->query($sql) === TRUE) {
-    $userId = $conn->insert_id;
-    echo json_encode(['success' => true, 'userId' => $userId]);
+    $sql = "SELECT user_score FROM users WHERE id = $userId";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    echo json_encode(['success' => true, 'newScore' => $row['user_score']]);
 } else {
     error_log("Error executing query: " . $conn->error);
     echo json_encode(['success' => false, 'message' => 'Error: ' . $sql . ' - ' . $conn->error]);

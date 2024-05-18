@@ -1,42 +1,53 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
 <meta charset="utf-8" />
-<title>央央大富翁</title>
-<style>
-    header{
-      background-color: rgb(136, 233, 183);
-    }
-    h1{
-      color: rgb(18, 82, 61);
-      text-align: center;
-      font-size: 50px;
-    }
-  
-    body {
-          background-blend-mode: multiply;
-          background-image: url("img/0_cover.png");
-          background-repeat: no-repeat;
-          background-size: cover;
-    }
-</style>
-
-<head>
-    <header>
-        <h1>央央大富翁</h1>
-        <hr color="black" size="5px">
-    </header>
+<link rel="stylesheet" href="css/login.css">
+<title>登入 - 央央大富翁</title>
 </head>
 <body>
+<div id="login-form">
+  <h2>登入</h2>
+  <label for="username">用戶名：</label>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">密碼：</label>
+  <input type="password" id="password" name="password"><br>
+  <button onclick="login()">登入</button>
+</div>
 
+<script>
+async function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    <form action="project_2.php" method="post" >
-        請輸入帳號: <input type="test" name="account">
-        <br/>
-        請輸入密碼: <input type="test" name="password">
-        <br/>
-        <input type="submit" value="使用者登入">
-        </form>
+    const data = { username: username, password: password };
 
+    try {
+        const response = await fetch('/ncu_monopoly-dev_frontend/login.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`Server error: ${text}`);
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+            localStorage.setItem('userId', result.userId);
+            localStorage.setItem('username', username); // 存儲使用者名稱
+            window.location.href = 'index.html';
+        } else {
+            alert(`登入失敗: ${result.message}`);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert(`登入失敗: ${error.message}`);
+    }
+}
+</script>
 </body>
 </html>
-
