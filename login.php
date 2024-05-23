@@ -19,7 +19,7 @@ $password = $data['password'];
 
 $servername = "localhost";
 $dbusername = "root";
-$dbpassword = "";
+$dbpassword = "5253";
 $dbname = "mydatabase";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
