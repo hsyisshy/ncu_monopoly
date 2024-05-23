@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 
 <head>
-<meta charset="utf-8" /><link rel="stylesheet" href="css/index.css">
+<meta charset="utf-8" /><link rel="stylesheet" href="index.css">
 <title>！央央大富翁！</title>
 </head>
 
@@ -10,15 +10,15 @@
 <body>
   <table id="gameBoard" border="3" >
     <tr>
-      <td id="location1"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="20%" height="50%"></td>
-      <td id="location2"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="20%" height="50%"></td>
-      <td id="location3"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="20%" height="50%"></td>
-      <td id="location4"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="20%" height="50%"></td>
-      <td id="location5"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="20%" height="50%"></td>
+      <td id="location1"><div class="index-number">1</div>中大圓環(起點)<br><div class="player-dot"></div><img src="img/1_中大圓環.png" width="50vh" height="50vh"></td>
+      <td id="location2"><div class="index-number">2</div>大象雕塑<br><img src="img/2_大象雕塑.png" width="50vh" height="50vh"></td>
+      <td id="location3"><div class="index-number">3</div>男九垃圾場<br><img src="img/3_男九垃圾場.png" width="50vh" height="50vh"></td>
+      <td id="location4"><div class="index-number">4</div>小木屋<br><img src="img/4_小木屋.png" width="50vh" height="50vh"></td>
+      <td id="location5"><div class="index-number">5</div>中大湖(命運)<br><img src="img/5_中大湖.png" width="50vh" height="50vh"></td>
     </tr>
 
     <tr>
-      <td id="location16"><div class="index-number">16</div>觀景台<br><img  src="img/16_觀景台.png"width="20%" height="50%"></td>
+      <td id="location16"><div class="index-number">16</div>觀景台<br><img  src="img/16_觀景台.png" width="50vh" height="50vh"></td>
 
       <td colspan="3" rowspan="3">
 
@@ -55,11 +55,11 @@
         <!-- user-score：遊戲結束後，可以顯示登入的 username 和 總得分 -->
         <div class="modal" id="user-score">
           <div class="modal-content">
-            <div class="modal-title">
+            <div class="gameover">
               <h2>Game Over</h2>
             </div>
-            <div class="modal-body">
-              <table>
+            <div class="table-container">
+              <table class="score-table">
                 <thead>
                   <tr>
                     <th>User Name</th>
@@ -78,26 +78,26 @@
 
       </td>
 
-      <td id="location6" ><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png"width="20%" height="50%"></td>
+      <td id="location6" ><div class="index-number">6</div>壘球場<br><img src="img/6_壘球場.png"width="50vh" height="50vh"></td>
 
     </tr>
 
 
     <tr>
-      <td id="location15"><div class="index-number">15</div>太極銅雕<br><img  src="img/15_太極銅雕.png"width="20%" height="50%"></td>
-      <td id="location7"><div class="index-number">7</div>依仁堂<br><img  src="img/7_依仁堂.png"width="20%" height="50%"></td>
+      <td id="location15"><div class="index-number">15</div>太極銅雕<br><img  src="img/15_太極銅雕.png"width="50vh" height="50vh"></td>
+      <td id="location7"><div class="index-number">7</div>依仁堂<br><img  src="img/7_依仁堂.png"width="50vh" height="50vh"></td>
     </tr>
 
     <tr>
-      <td id="location14"><div class="index-number">14</div>校史館<br><img  src="img/14_校史館.png"width="20%" height="50%"></td>
-      <td id="location8"><div class="index-number">8</div>oloo<br><img  src="img/8_oloo.png"width="20%" height="50%"></td>
+      <td id="location14"><div class="index-number">14</div>校史館<br><img  src="img/14_校史館.png"width="50vh" height="50vh"></td>
+      <td id="location8"><div class="index-number">8</div>oloo<br><img  src="img/8_oloo.png"width="50vh" height="50vh"></td>
     </tr>
     <tr>
-      <td id="location13"><div class="index-number">13</div>游藝館<br><img  src="img/13_游藝館.png"width="20%" height="50%"></td>
-      <td id="location12" ><div class="index-number">12</div>百花川<br><img  src="img/12_百花川.png"width="20%" height="50%"></td>
-      <td id="location11"><div class="index-number">11</div>宵夜街<br><img  src="img/11_宵夜街.png"width="20%" height="50%"></td>
-      <td id="location10"><div class="index-number">10</div>女生宿舍<br><img  src="img/10_女生宿舍.png"width="20%" height="50%"></td>
-      <td id="location9"><div class="index-number">9</div>松苑餐廳<br><img  src="img/9_松苑餐廳.png"width="20%" height="50%"></td>
+      <td id="location13"><div class="index-number">13</div>游藝館<br><img  src="img/13_游藝館.png"width="50vh" height="50vh"></td>
+      <td id="location12" ><div class="index-number">12</div>百花川<br><img  src="img/12_百花川.png"width="50vh" height="50vh"></td>
+      <td id="location11"><div class="index-number">11</div>宵夜街<br><img  src="img/11_宵夜街.png"width="50vh" height="50vh"></td>
+      <td id="location10"><div class="index-number">10</div>女生宿舍<br><img  src="img/10_女生宿舍.png"width="50vh" height="50vh"></td>
+      <td id="location9"><div class="index-number">9</div>松苑餐廳<br><img  src="img/9_松苑餐廳.png"width="50vh" height="50vh"></td>
     </tr>
   </table>
 
@@ -105,7 +105,7 @@
   <div class="red-dot" id="redDot"></div>
 </body>
 
-<script src="js/index.js"></script>
+<script src="index.js"></script>
 <script>
   window.onload = function() {
     init();
