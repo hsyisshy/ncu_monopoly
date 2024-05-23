@@ -9,7 +9,7 @@ async function login() {
     const data = { username: username, password: password };
 
     try {
-        const response = await fetch('/ncu_monopoly-dev_frontend/login.php', {
+        const response = await fetch('login.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -235,7 +235,7 @@ function updateUserScore(scoreChange) {
     const userId = localStorage.getItem('userId');
     const data = { userId: userId, scoreChange: scoreChange };
 
-    fetch('/ncu_monopoly-dev_frontend/update-score.php', {
+    fetch('update-score.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
