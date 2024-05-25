@@ -1,0 +1,156 @@
+body {
+    background-blend-mode: multiply;
+    background-image: url("../img/背景圖.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom; /* 图片底部与页面底部对齐 */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+    table {
+        border-collapse: collapse;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    th {
+        background-color: rgba(255, 255, 255, 0.6);
+        height: 20vh;
+        width: 20vh;
+        font-size: 5vh;
+        color: rgb(4, 51, 22);
+        /*padding: 20px;*/
+        aspect-ratio: 1 / 1;
+    }
+
+    td {
+        background-color: rgba(255, 255, 255, 0.8);
+        height: 10vh;
+        width: 10vh;
+        text-align: center;
+        /*padding: 20px;*/
+        border: 2px solid black;
+        font-size: 2.5vh;
+        font-weight: bold;
+        position: relative;
+        aspect-ratio: 1 / 1;
+    }
+
+    .red-dot {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .gameover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .table-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    .score-table {
+        width: 100%;
+        max-width: 500px;
+        border-collapse: collapse; /* 移除邊框之間的間隙 */
+        height: 100%;
+    }
+    
+    .score-table th, .score-table td {
+        border: 1px solid #000;
+        text-align: center;
+    }
+    
+    .score-table thead th {
+        background-color: #f2f2f2;
+        font-size: 1.2em;
+        height: 20%;
+    }
+    
+    .score-table tbody td {
+        font-size: 1em;
+    }
+
+.modal {
+    visibility: hidden;
+    visibility: visible;
+    opacity: 1;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    /*transition: opacity 0.5s, visibility 0.5s;*/
+    display: flex;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+.modal-content {
+    background: white;
+    box-shadow: rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column; /* Ensures vertical layout */
+    width: 100%;
+    height: 10%;
+}
+
+.modal-title h2 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+}
+
+.modal-header img {
+    display: flex;
+    width: 20%; /* Ensures the image covers the width of the modal */
+    height: 30%; /* Keeps image aspect ratio intact */
+    margin: 0 auto; /* 若需要居中显示 */
+
+}
+
+.modal-body {
+    display: flex;
+    padding: 5px;
+    text-align: left; /* Aligns text to the left */
+
+}
+
+.modal-footer {
+    display: flex;
+    padding: 5px;
+    text-align: right; /* Aligns buttons to the right */
+    border-top: 1px solid #eee; /* Adds a line above the button area */
+}
+
+
+
+
+

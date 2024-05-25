@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="css/login.css">
+<title>登入 - 央央大富翁</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div id="login-form">
+<section class="test">
+    <h2>請出示學生證</h2>
+  <label for="username">帳號</label>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">密碼</label>
+  <input type="password" id="password" name="password"><br>
+</section>
+<div class = "button">
+    <a onclick="toggle()">新生註冊？</a>
+    <button onclick="login()">送出資料</button>
+<div class="bigkingbug">
+    <img src="img/大王具足蟲.gif" alt="具足蟲幫">
+</div>
+</div>
+</div>
+
+<script>
+
+function toggle(){
+
+	if($(".button > a").html()==="學生登入！"){
+		$(".test > h2").text("請出示學生證");
+		$('.error').hide();
+		$(".button > a").text("新生註冊？");
+	}
+	else{
+		$(".test > h2").text("新生註冊填寫");
+		$('.error').hide();
+		$(".button > a").text("學生登入！");
+	}
+}
+
+
+async function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    var isSignup = ($(".test > h2").html()==="新生註冊填寫")? 1 : 0; 
+
+    if(!username){
+        alert(`你需要輸入帳號`);
+ 	} 
+    else if(!password){
+        console.error('Error:', error);
+        alert(`你需要輸入密碼`);
+ 	}
+    else{
+        const data = { username: username, password: password, isSignup: isSignup};
+        try {
+            const response = await fetch('login.php', {method: 'POST',headers: { 'Content-Type': 'application/json' },body: JSON.stringify(data)});
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`Server error: ${text}`);
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+            localStorage.setItem('userId', result.userId);
+            localStorage.setItem('username', username); // 存儲使用者名稱
+            window.location.href = 'index.html';
+        } else {
+            alert(`登入失敗: ${result.message}`);
+        }
+        }
+        catch (error) {
+        console.error('Error:', error);
+        alert(`登入失敗: ${error.message}`);
+    }
+    }
+}
+</script>
+</body>
+</html>
