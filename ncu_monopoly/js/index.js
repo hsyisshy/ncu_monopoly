@@ -241,7 +241,6 @@ function updateUserScore(scoreChange) {
             .then(response => response.json())
             .then(data => {
                 console.log('Score updated successfully:', data);
-                alert(`分數變更：${scoreChange > 0 ? '加分' : '扣分'} ${scoreChange}`);
                 storeScore(data.newScore);
                 updateDisplayedScore(data.newScore);
 
