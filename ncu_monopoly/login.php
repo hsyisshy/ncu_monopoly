@@ -49,7 +49,7 @@ if($isSignup==1){
     
     if ($sql->execute()) {
         $userId = $conn->insert_id;
-        echo json_encode(['success' => true, 'userId' => $userId]);
+        echo json_encode(['success' => true, 'message' => '註冊成功' , 'userId' => $userId]);
     } 
     else {
         error_log("Error executing query: " . $conn->error);
